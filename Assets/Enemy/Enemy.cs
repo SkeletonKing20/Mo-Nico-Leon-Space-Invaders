@@ -3,6 +3,7 @@
 public class Enemy : MonoBehaviour
 {
     private EnemySpawner spawner;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnEnemyHit();

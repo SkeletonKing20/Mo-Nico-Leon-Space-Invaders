@@ -17,7 +17,11 @@ public class EnemySpawner : MonoBehaviour
     {
         SpawnEnemies();
     }
-
+    public Enemy[] GetSpawnerChildren()
+    {
+        Enemy[] enemy = GetComponentsInChildren<Enemy>();
+        return enemy;
+    }
     public void OnBeforeEnemyDestroyed(Enemy enemy)
     {
         // Debug.Log(enemy.gameObject.name + " was destroyed. " + (transform.childCount - 1) + " Enemies left.");
