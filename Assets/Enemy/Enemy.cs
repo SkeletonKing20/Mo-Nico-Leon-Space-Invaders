@@ -3,7 +3,7 @@
 public class Enemy : MonoBehaviour
 {
     private EnemySpawner spawner;
-    private float speed = 10f;
+    private float speed = 0.2f;
     private float rightBorder = 8;
     private float leftBorder = -8;
     public void MoveEnemy()
@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
         transform.position += Vector3.right * speed * Time.deltaTime;
         foreach (Enemy enemy in spawner.GetSpawnerChildren())
         {
-            if (transform.position.x < leftBorder || transform.position.x < rightBorder)
+            if (transform.position.x < leftBorder || transform.position.x > rightBorder)
             {
                 speed = -speed;
+                transform.position += Vector3.down;
                 return;
             }
         }
