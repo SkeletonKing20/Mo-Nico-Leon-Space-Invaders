@@ -3,9 +3,9 @@
 public class Enemy : MonoBehaviour
 {
     private EnemySpawner spawner;
-    private float speed = 0.2f;
+    private float speed = 10f;
     private float rightBorder = 8;
-    private float leftBorder = 8;
+    private float leftBorder = -8;
     public void MoveEnemy()
     {
         transform.position += Vector3.right * speed * Time.deltaTime;
@@ -17,6 +17,10 @@ public class Enemy : MonoBehaviour
                 return;
             }
         }
+    }
+    private void FixedUpdate()
+    {
+        MoveEnemy();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
