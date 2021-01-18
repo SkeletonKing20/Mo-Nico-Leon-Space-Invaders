@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7262076892530903460}
   - component: {fileID: 9060927860420390517}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 376556805621853939}
   - component: {fileID: 6050066082444215984}
   - component: {fileID: 8306090452709209822}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c62d0d8e1353345994f08ba6a7bc2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyBullet: {fileID: 4657751244536747378, guid: 1be5c6fca6b837047a5d6f4e53be464f,
+    type: 3}
 --- !u!50 &8306090452709209822
 Rigidbody2D:
   serializedVersion: 4
@@ -158,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8872615940503067537}
   - component: {fileID: 5285300842117161907}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

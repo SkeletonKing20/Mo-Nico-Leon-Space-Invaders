@@ -3,32 +3,30 @@
 public class Enemy : MonoBehaviour
 {
     private EnemySpawner spawner;
-    private float speed = 0.2f;
-    private float rightBorder = 8;
-    private float leftBorder = -8;
-    public void MoveEnemy()
+    public Bullet EnemyBullet;
+    private float rocketChance = 0.012f;
+    private float chance;
+    private static int enemiesDestroyed = 0;
+    public float fucktor = 0.042f;
+    private void FixedUpdate()
     {
-        transform.position += Vector3.right * speed * Time.deltaTime;
-        foreach (Enemy enemy in spawner.GetSpawnerChildren())
-        {
-            if (transform.position.x < leftBorder || transform.position.x > rightBorder)
-            {
-                speed = -speed;
-                transform.position += Vector3.down;
-                return;
-            }
-        }
-    }
-    private void Awake()
-    {
+        spawnRocket();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
+            enemiesDestroyed++;
             Destroy(collision.gameObject);
+            Debug.Log(rocketChanceCalc());
         }
+    }
+
+    public float rocketChanceCalc()
+    {
+        float rocketChance2 = fucktor * enemiesDestroyed + 0.012f;
+        return rocketChance2;
     }
     public bool isPlayerDed()
     {
@@ -50,6 +48,15 @@ public class Enemy : MonoBehaviour
     public void SetEnemySpawner(EnemySpawner spawner)
     {
         this.spawner = spawner;
+    }
+
+    public void spawnRocket()
+    {
+        chance = Random.Range(0, 100f);
+        if(chance <= rocketChanceCalc())
+        {
+            Instantiate(EnemyBullet, transform.position, Quaternion.AngleAxis(180, Vector3.right));
+        }
     }
 }
 

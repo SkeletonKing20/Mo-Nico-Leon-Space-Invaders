@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemyPrefab;
-
-    public float speed = 0.2f;
+    public float speed;
     public float rightBorder = 0.7f;
     public float leftBorder = -0.7f;
 
@@ -16,7 +15,10 @@ public class EnemySpawner : MonoBehaviour
 
     public float xOffset = 1f;
     public float yOffset = 1f;
-
+    private void Awake()
+    {
+        speed = speedCalc();
+    }
     private void Start()
     {
         SpawnEnemies();
@@ -25,6 +27,12 @@ public class EnemySpawner : MonoBehaviour
     private void FixedUpdate()
     {
         MoveEnemy();
+        Debug.Log(speedCalc());
+    }
+    public float speedCalc()
+    {
+        float speed2 = 0.2f + (120 - GetSpawnerChildren().Length) / 91.53f;
+        return speed2;
     }
     public void MoveEnemy()
     {
@@ -77,7 +85,6 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemies()
     {
         Vector3 startPosition = transform.position - ((Vector3.right * xOffset * (columns - 1)) + (Vector3.down * yOffset * (rows - 1))) / 2f;
-
         Enemy newEnemy;
 
         for (int y = 0; y < rows; y++) // rows
