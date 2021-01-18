@@ -24,7 +24,11 @@ public class Enemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnEnemyHit();
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
     public bool isPlayerDed()
     {
@@ -46,11 +50,6 @@ public class Enemy : MonoBehaviour
     public void SetEnemySpawner(EnemySpawner spawner)
     {
         this.spawner = spawner;
-    }
-
-    protected virtual void OnEnemyHit()
-    {
-        Destroy(gameObject);
     }
 }
 
