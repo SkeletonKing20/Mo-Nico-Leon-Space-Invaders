@@ -19,13 +19,23 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    private void FixedUpdate()
+    private void Awake()
     {
-        MoveEnemy();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnEnemyHit();
+    }
+    public bool isPlayerDed()
+    {
+        if (this.transform.position.y <= 0.88)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void OnDestroy()

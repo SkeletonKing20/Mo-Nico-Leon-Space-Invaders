@@ -7,6 +7,10 @@ public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemyPrefab;
 
+    public float speed = 0.2f;
+    public float rightBorder = 0.7f;
+    public float leftBorder = -0.7f;
+
     public int columns = 1; // x-coordinate
     public int rows = 1;    // y-coordinate
 
@@ -17,6 +21,25 @@ public class EnemySpawner : MonoBehaviour
     {
         SpawnEnemies();
     }
+
+    private void FixedUpdate()
+    {
+        MoveEnemy();
+    }
+    public void MoveEnemy()
+    {
+        transform.position += Vector3.right * speed * Time.deltaTime;
+        foreach (Enemy enemy in GetSpawnerChildren())
+        {
+            if (transform.position.x < leftBorder || transform.position.x > rightBorder)
+            {
+                speed = -speed;
+                transform.position += Vector3.down * 0.5f;
+                return;
+            }
+        }
+    }
+
     public Enemy[] GetSpawnerChildren()
     {
         Enemy[] enemy = GetComponentsInChildren<Enemy>();
