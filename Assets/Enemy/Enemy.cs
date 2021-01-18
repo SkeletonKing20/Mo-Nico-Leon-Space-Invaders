@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
     private EnemySpawner spawner;
     public Bullet EnemyBullet;
-    private float rocketChance = 0.012f;
+    private float initialRocketChance = 0.012f;
     private float chance;
     private static int enemiesDestroyed = 0;
     public float fucktor = 0.042f;
@@ -25,8 +25,8 @@ public class Enemy : MonoBehaviour
 
     public float rocketChanceCalc()
     {
-        float rocketChance2 = fucktor * enemiesDestroyed + 0.012f;
-        return rocketChance2;
+        float rocketChance = fucktor * enemiesDestroyed + 0.012f;
+        return rocketChance;
     }
     public bool isPlayerDed()
     {
